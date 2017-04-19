@@ -1,0 +1,134 @@
+# -*-  encoding:utf-8  -*-
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+
+caffe_root = '/home/jie/caffe/caffe-master/'
+import sys
+sys.path.insert(0,caffe_root+'python')
+
+import caffe
+
+MODEL_FILE = caffe_root+'myself/python_okornotok/okornotok_result/deploy.prototxt'
+PRETRAINED = caffe_root+'myself/python_okornotok/okornotok_result/caffe_alexnet_train_iter_1200.caffemodel'
+
+#cpu mode
+caffe.set_mode_cpu()
+
+#Initial the network
+net = caffe.Classifier(MODEL_FILE, PRETRAINED,
+                       #mean=np.load(caffe_root + 'myself/python_okornotok/okornotok_result/mnist_train_lmdb_mean.npy').mean(1).mean(1),
+                       #mean(1).mean(1),
+                       channel_swap=(2,1,0),
+                       raw_scale=255,
+                       #input_scale=227,
+                       image_dims=(256, 256))
+               #oversample=False,
+
+#imagenet_labels_filename = caffe_root + 'data/ilsvrc12/synset_words.txt'
+#labels = np.loadtxt(imagenet_labels_filename, str, delimiter='\t')
+#net.set_phase_test()
+input_image = caffe.io.load_image(caffe_root + "myself/python_okornotok/okornotok/train/ok/20150919-13720-147955.jpg" )
+
+prediction = net.predict([input_image])
+print 'predicted class:',prediction[0].argmax()
+
+plt.rcParams['figure.figsize'] = (10, 10)
+plt.rcParams['image.interpolation'] = 'nearest'
+plt.rcParams['image.cmap'] = 'gray'
+plt.imshow(input_image)
+
+
+
+#net.blobs['data'].reshape(1,3,227,227)
+
+sum=0
+error_number=0
+test_file1 = "/home/jie/caffe/caffe-master/myself/python_okornotok/okornotok5-5/other-5/test"
+test_file2 = "/home/jie/caffe/caffe-master/myself/python_okornotok/okornotok5-5/ok-5/test"
+test_file3 = "/home/jie/caffe/caffe-master/myself/python_okornotok/okornotok/train/other"
+test_file4 = "/home/jie/caffe/caffe-master/myself/python_okornotok/okornotok/train/ok"
+for root,dirs,files in os.walk(test_file3):
+	for file in files:
+		#print file
+		IMAGE_FILE = os.path.join(root,file)
+		prediction = net.predict([caffe.io.load_image(IMAGE_FILE)],oversample=False)
+		#print 'predicted class:',prediction[0].argmax()
+		print("Predicted class is #{}.".format(out['prob'][0].argmax()))
+		sum=sum+1
+		if out['prob'][0].argmax() == 0:
+			error_number = error_number+1
+		#print 'prediction shape:',prediction[0].shape
+		#plt.plot(prediction[0])
+		#print "predicted class:%s"%(IMAGE_FILE)
+		#input_image = caffe.io.load_image(IMAGE_FILE)
+		#print input_image
+		#prediction class
+	
+	
+        #prediction = net.predict([input_image])
+        #print 'predicted class:',prediction[0].argmax()
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+prtest_dir='/home/jie/caffe/caffe-master/myself/python_okornotok/okornotok/train/other'
+import os
+for root,dirs,files in os.walk(test_dir):
+	print root
+	print dirs
+	print files
+
+net.blobs['data'].reshape(1,3,227,227)
+test_dir='/home/jie/caffe/caffe-master/myself/python_okornotok/okornotok/train/other'
+import os
+for root,dirs,files in os.walk(test_dir):
+    for i in xrange (0,files.__len__()):
+        sf=os.path.join(root,files[i])
+	input_image = caffe.io.load_image(sf)
+        print (files[i])
+ 	prediction = net.predict([input_image])
+        print 'predicted class:',prediction[0].argmax()
+        #net.blobs['data'].data[...] = transformer.preprocess('data', caffe.io.load_image(sf))
+        #out = net.forward()
+        #print("Predicted class is #{}.".format(out['prob'].argmax()))
+
+
+#classification
+for root,dirs,files in os.walk("/home/jie/caffe/caffe-master/myself/python_okornotok/okornotok/train/ok"):
+    for file in files:
+        #Load the image
+        IMAGE_FILE = os.path.join(root,file)
+        input_image = caffe.io.load_image(IMAGE_FILE)
+        
+        #prediction class
+        prediction = net.predict([input_image])
+        print 'predicted class:',prediction[0].argmax()
+
+        # Top 5 class
+        top_k = net.blobs['prob'].data[0].flatten().argsort()[-1:-6:-1]
+        print labels[top_k]
