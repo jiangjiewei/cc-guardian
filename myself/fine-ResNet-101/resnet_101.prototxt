@@ -17,7 +17,7 @@ layer {
   }
   data_param {
     source: "./myself/fine-ResNet-101/two_classification_problem/weighted-fine-resnet-128/mnist_train_lmdb"
-    batch_size: 65
+    batch_size: 64
     backend: LMDB
   }
 }
