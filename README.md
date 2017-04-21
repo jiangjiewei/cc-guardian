@@ -1,5 +1,5 @@
 ### Usage Instructions:
-#Train
+# Train
 * Clone this repository somewhere, let's refer to it as $ROOT
 ```
 git clone https://github.com/longerping/cc-guardian.git
@@ -24,7 +24,7 @@ cd $ROOT
 sh myself/fine-ResNet-101/train.sh
 ```
 
-#Test
+# Test
 
 The test code is in $ROOT/myself/five_fold_cross_twoclass
 
