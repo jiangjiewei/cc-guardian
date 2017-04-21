@@ -16,5 +16,5 @@ momentum: 0.9
 weight_decay: 0.0005
 snapshot: 1000
 
-snapshot_prefix: "./myself/fine-ResNet-101/two_classification_problem/weighted-fine-resnet-128/caffe_alexnet_train_200"
+snapshot_prefix: "./myself/fine-ResNet-101/caffe_alexnet_train_2000"
 solver_mode: GPU
