@@ -25,7 +25,9 @@ sh myself/fine-ResNet-101/train.sh
 ```
 
 #Test
+
 The test code is in $ROOT/myself/five_fold_cross_twoclass
+
 * Run the five-fold-cross.py to test: in python terminal. 
 
 
