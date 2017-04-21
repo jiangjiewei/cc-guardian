@@ -4,7 +4,7 @@
 ```
 git clone https://github.com/longerping/cc-guardian.git
 ```
-* compile the caffe and pycaffe.
+* Compile the caffe and pycaffe.
 ```
 cd $ROOT
 make all 
