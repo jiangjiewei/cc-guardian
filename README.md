@@ -13,11 +13,6 @@ make runtest
 make pycaffe
 ```
 * Download the pre-trained model（https://github.com/KaimingHe/deep-residual-networks#models）
-* Modify the values of two variables: pos_mult (specify the weight multiplier of a class) and pos_cid (the class number of the specified class) in $ROOT/src/caffe/layers/weighted_softmax_loss_layer.cpp
-```
-pos_mult_ = 12
-pos_cid_ = 1
-```
 * Run the train.sh in $ROOT/myself/fine-ResNet-101/train.sh to train the model
 ```
 cd $ROOT
