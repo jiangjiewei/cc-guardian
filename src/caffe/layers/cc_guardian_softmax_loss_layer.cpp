@@ -21,8 +21,8 @@ void WeightedSoftmaxWithLossLayer<Dtype>::LayerSetUp(
   softmax_top_vec_.push_back(&prob_);
   softmax_layer_->SetUp(softmax_bottom_vec_, softmax_top_vec_);
 
-  pos_mult_ = 12
-  pos_cid_ = 1
+  pos_mult_ = 12;
+  pos_cid_ = 1;
   LOG(INFO) << "mult: " << pos_mult_ << ", id: " << pos_cid_;
 
   has_ignore_label_ =
