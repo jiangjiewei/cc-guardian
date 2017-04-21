@@ -38,7 +38,7 @@ void WeightedSoftmaxWithLossLayer<Dtype>::Forward_gpu(
   const Dtype* label = bottom[1]->gpu_data();
   const int dim = prob_.count() / outer_num_;
   const int nthreads = outer_num_ * inner_num_;
-  std::cout<<"--------liulin WeightedSoftmaxLossForwardGPU....."<<"pos_mult:"<<pos_mult_<<",pos_cid_:"<<pos_cid_<<"\n";
+  //std::cout<<"--------WeightedSoftmaxLossForwardGPU....."<<"pos_mult:"<<pos_mult_<<",pos_cid_:"<<pos_cid_<<"\n";
   // Since this memory is not used for anything until it is overwritten
   // on the backward pass, we use it here to avoid having to allocate new GPU
   // memory to accumulate intermediate results in the kernel.
@@ -113,7 +113,7 @@ void WeightedSoftmaxWithLossLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*
     const Dtype* label = bottom[1]->gpu_data();
     const int dim = prob_.count() / outer_num_;
     const int nthreads = outer_num_ * inner_num_;
-    std::cout<<"--------liulin WeightedSoftmaxLossBackwardGPU....."<<"pos_mult:"<<pos_mult_<<",pos_cid_:"<<pos_cid_<<"\n";
+    //std::cout<<"--------WeightedSoftmaxLossBackwardGPU....."<<"pos_mult:"<<pos_mult_<<",pos_cid_:"<<pos_cid_<<"\n";
     // Since this memory is never used for anything else,
     // we use to to avoid allocating new GPU memory.
     Dtype* counts = prob_.mutable_gpu_diff();
