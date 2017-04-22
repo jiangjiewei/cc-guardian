@@ -12,7 +12,7 @@ make test
 make runtest 
 make pycaffe
 ```
-* Download the pre-trained model（https://github.com/KaimingHe/deep-residual-networks#models）
+* Download the pre-trained ResNet-101 model（https://github.com/KaimingHe/deep-residual-networks#models）
 * Run the train.sh in $ROOT/myself/fine-ResNet-101/train.sh to train the model
 ```
 cd $ROOT
